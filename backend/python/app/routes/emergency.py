@@ -34,6 +34,10 @@ def sos():
     )
     db.commit()
 
+    created_at = db.execute(
+        "SELECT created_at FROM sos_alerts WHERE id = ?", (cursor.lastrowid,)
+    ).fetchone()["created_at"]
+
     nearby_help = []
     try:
         nearby_help = gis.retry(gis.find_nearby, lat, lng, "hospital", 3000, 3)
@@ -46,7 +50,7 @@ def sos():
                 "alert_id": cursor.lastrowid,
                 "status": "ACTIVE",
                 "address": address,
-                "created_at": None,
+                "created_at": created_at,
                 "nearest_help": nearby_help,
                 "instruction": (
                     "Your SOS has been registered with our system and your emergency contact has been notified. "

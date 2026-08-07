@@ -21,7 +21,7 @@ GREETINGS = [
 ]
 
 SOS_PATTERNS = [
-    r"(emergency|help me|call (for )?help|in danger|i('m| am) lost|lost my way|stuck|accident|i need help)",
+    r"(emergency|help me|call (for )?help|in danger|i('m| am|m) lost|lost my way|stuck|accident|i need help)",
     r"(sos|alert the authorities|police now)",
 ]
 
@@ -40,7 +40,8 @@ ROBOT_PATTERNS = {
     "left": r"\b(turn left|go left|left)\b",
     "right": r"\b(turn right|go right|right)\b",
     "stop": r"\b(stop|halt|brake|park the robot)\b",
-    "scan": r"\b(scan|explore|patrol|survey)\b",
+    "scan": r"\b(scan|explore|survey)\b",
+    "patrol": r"\b(patrol|patrol the area)\b",
 }
 
 ROBOT_STATUS_PATTERNS = [
@@ -155,15 +156,16 @@ def assist(message: str, user_id: int, context: dict[str, Any] | None = None) ->
             "text": "I'll advance the turn-by-turn instructions to your next manoeuvre.",
         }
 
-    if re.search("|".join(ROBOT_PATTERNS["stop"]), text) or "robot" in text:
-        for cmd, pattern in ROBOT_PATTERNS.items():
-            if re.search(pattern, text):
-                return {
-                    "intent": INTENT_ROBOT,
-                    "robot_command": cmd,
-                    "text": f"Commanding the robot to {cmd.replace('_', ' ')} now.",
-                }
-        return {"intent": INTENT_ROBOT, "robot_command": "scan", "text": "Scanning the area with the robot."}
+    matched_command = next(
+        (cmd for cmd, pattern in ROBOT_PATTERNS.items() if re.search(pattern, text)), None
+    )
+    if matched_command or "robot" in text:
+        command = matched_command or "scan"
+        return {
+            "intent": INTENT_ROBOT,
+            "robot_command": command,
+            "text": f"Commanding the robot to {command.replace('_', ' ')} now.",
+        }
 
     if any(re.search(p, text) for p in NEARBY_PATTERNS):
         place_type = _detect_place_type(text)
