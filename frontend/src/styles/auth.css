@@ -1,0 +1,62 @@
+.auth-page {
+  min-height: 100vh;
+  background:
+    radial-gradient(900px 500px at 50% -20%, rgba(37, 99, 235, 0.25), transparent),
+    var(--bg);
+}
+
+.auth-card {
+  max-width: 440px;
+  margin: 3rem auto 4rem;
+  background: var(--surface);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 2rem;
+}
+
+.auth-head {
+  text-align: center;
+  margin-bottom: 1.4rem;
+}
+
+.auth-head .brand-badge {
+  font-size: 2.2rem;
+  display: block;
+  margin-bottom: 0.3rem;
+}
+
+.auth-head h1 {
+  font-size: 1.5rem;
+}
+
+.auth-head p {
+  color: var(--muted);
+}
+
+.auth-form .btn {
+  margin-top: 0.4rem;
+}
+
+.field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.8rem;
+}
+
+.auth-foot {
+  text-align: center;
+  color: var(--muted);
+  margin-top: 1.2rem;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 480px) {
+  .auth-card {
+    margin: 1.2rem;
+    padding: 1.4rem;
+  }
+
+  .field-row {
+    grid-template-columns: 1fr;
+  }
+}

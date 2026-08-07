@@ -1,0 +1,114 @@
+.robot-page {
+  min-height: 100vh;
+  background: var(--bg-soft);
+  padding-bottom: 2rem;
+}
+
+.robot-notice {
+  margin: 0;
+}
+
+.robot-grid {
+  max-width: 1320px;
+  margin: 1.2rem auto 0;
+  padding: 0 1.2rem;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 400px;
+  gap: 1.2rem;
+  align-items: start;
+}
+
+.robot-map {
+  position: relative;
+}
+
+.robot-map .map-view {
+  height: 640px;
+}
+
+.robot-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+.pad {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 1rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.6rem;
+}
+
+.pad-btn {
+  padding: 1.1rem 0.5rem;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: transform 0.1s ease, background 0.15s ease;
+}
+
+.pad-btn:not(:disabled):hover {
+  transform: translateY(-2px);
+  background: #e2e8f0;
+}
+
+.pad-btn.active {
+  background: var(--primary);
+  color: #fff;
+  border-color: var(--primary);
+}
+
+.pad-stop {
+  background: #fef2f2;
+  color: var(--danger);
+  border-color: #fecaca;
+}
+
+.pad-stop.active {
+  background: var(--danger);
+  color: #fff;
+  border-color: var(--danger);
+}
+
+.command-log {
+  max-width: 1320px;
+  margin: 1.2rem auto 0;
+  padding: 1.2rem;
+}
+
+.command-log table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.command-log th,
+.command-log td {
+  text-align: left;
+  padding: 0.5rem 0.6rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.command-log code {
+  background: var(--surface-2);
+  padding: 0.15rem 0.45rem;
+  border-radius: 6px;
+  font-weight: 700;
+}
+
+@media (max-width: 1000px) {
+  .robot-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .robot-map .map-view {
+    height: 420px;
+  }
+}
