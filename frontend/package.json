@@ -5,8 +5,8 @@
   "type": "module",
   "description": "JoshRob AI - React web dashboard (navigation, emergency SOS, robotics control)",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
+    "dev": "node init && vite",
+    "build": "node init && vite build",
     "preview": "vite preview"
   },
   "dependencies": {

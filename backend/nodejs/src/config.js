@@ -10,5 +10,6 @@ export const config = {
   corsOrigin: env.CORS_ORIGIN || "http://localhost:5173",
   frontendDist: env.FRONTEND_DIST || "../../frontend/dist",
   robotBridgeUrl: env.ROBOT_BRIDGE_URL || "",
+  robotBridgeKey: env.ROBOT_BRIDGE_KEY || "",
   isProduction: env.NODE_ENV === "production",
 };
